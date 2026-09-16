@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="840" viewBox="0 0 760 840" role="img" aria-labelledby="title desc">
+  <title id="title">Deep Research Agent: concurrent searches and two bounded loops</title>
+  <desc id="desc">The controller chooses initial and deeper queries. Inside parallel_search, up to three search calls run concurrently and their results are combined before returning to the controller. This repeats until research is complete, stalled, or capped. The writer drafts an answer, and the auditor can request one rewrite followed by a fresh review. The final writer draft is shown even if audit issues remain. Query boxes illustrate concurrent calls inside one node, not additional graph nodes.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#334155" stroke-width="1.7"/></marker>
+    <marker id="back" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#2563a6" stroke-width="1.7"/></marker>
+    <style>
+      text { font-family:Arial,sans-serif;fill:#243142;font-size:17px }
+      .title { font-size:24px;font-weight:600 }
+      .name { font-size:20px;font-weight:600 }
+      .phase { font-size:18px;font-weight:600;fill:#2563a6 }
+      .note { font-size:16px;fill:#475569 }
+      .query { font-size:14px }
+      .node { fill:#fff;stroke:#9cabb9;stroke-width:1.5 }
+      .group { fill:#f6f9fc;stroke:#c6d3df;stroke-width:1.5;stroke-dasharray:6 5 }
+      .flow { fill:none;stroke:#334155;stroke-width:2;marker-end:url(#arrow);stroke-linejoin:round }
+      .join { fill:none;stroke:#334155;stroke-width:2;stroke-linejoin:round }
+      .return { fill:none;stroke:#2563a6;stroke-width:2.8;marker-end:url(#back);stroke-linejoin:round }
+    </style>
+  </defs>
+  <rect width="760" height="840" fill="#fff"/>
+  <text x="32" y="38" class="title">Deep Research Agent</text>
+  <text x="225" y="78" text-anchor="middle">User question</text>
+
+  <rect x="88" y="98" width="640" height="340" rx="14" class="group"/>
+  <path d="M225 86V155" class="flow"/>
+  <text x="450" y="126" class="phase">1 · Research loop</text>
+  <rect x="110" y="155" width="230" height="76" rx="10" class="node"/>
+  <text x="225" y="186" text-anchor="middle" class="name">controller</text>
+  <text x="225" y="213" text-anchor="middle" class="note">Plan · learn · decide</text>
+  <text x="395" y="179" text-anchor="middle" class="note">Queries</text>
+  <path d="M340 193H450" class="flow"/>
+
+  <rect x="450" y="155" width="230" height="200" rx="10" class="node"/>
+  <text x="565" y="184" text-anchor="middle" class="name">parallel_search</text>
+  <text x="565" y="208" text-anchor="middle" class="note">Up to 3 searches at once</text>
+  <path d="M565 220V244M495 244H635" class="join"/>
+  <path d="M495 244V263" class="flow"/>
+  <path d="M565 244V263" class="flow"/>
+  <path d="M635 244V263" class="flow"/>
+  <rect x="465" y="263" width="60" height="42" rx="6" class="node"/>
+  <rect x="535" y="263" width="60" height="42" rx="6" class="node"/>
+  <rect x="605" y="263" width="60" height="42" rx="6" class="node"/>
+  <text x="495" y="289" text-anchor="middle" class="query">Query 1</text>
+  <text x="565" y="289" text-anchor="middle" class="query">Query 2</text>
+  <text x="635" y="289" text-anchor="middle" class="query">Query 3</text>
+  <path d="M495 305V324H635V305M565 305V331" class="join"/>
+  <text x="565" y="348" text-anchor="middle" class="note">Combine results</text>
+  <path d="M565 355V391Q565 397 559 397H231Q225 397 225 391V231" class="return"/>
+  <text x="405" y="422" text-anchor="middle" class="note">New results → deeper queries → repeat</text>
+
+  <rect x="88" y="490" width="640" height="214" rx="14" class="group"/>
+  <path d="M110 193H54V460Q54 466 60 466H219Q225 466 225 472V546" class="flow"/>
+  <text x="100" y="454" class="note">Complete / stalled / round limit</text>
+  <text x="450" y="520" class="phase">2 · Writing loop</text>
+  <rect x="110" y="546" width="230" height="76" rx="10" class="node"/>
+  <text x="225" y="577" text-anchor="middle" class="name">writer</text>
+  <text x="225" y="604" text-anchor="middle" class="note">Explain the discoveries</text>
+  <rect x="450" y="546" width="230" height="76" rx="10" class="node"/>
+  <text x="565" y="577" text-anchor="middle" class="name">auditor</text>
+  <text x="565" y="604" text-anchor="middle" class="note">Check the exact draft</text>
+  <text x="395" y="570" text-anchor="middle" class="note">Draft</text>
+  <path d="M340 584H450" class="flow"/>
+  <path d="M565 622V656Q565 662 559 662H231Q225 662 225 656V622" class="return"/>
+  <text x="405" y="689" text-anchor="middle" class="note">Rejected → feedback → rewrite → fresh audit</text>
+
+  <path d="M680 584H748V756H710" class="flow"/>
+  <text x="445" y="726" class="note">Approved / correction limit reached</text>
+  <rect x="445" y="736" width="265" height="55" rx="10" class="node"/>
+  <text x="577" y="760" text-anchor="middle">Writer answer</text>
+  <text x="577" y="781" text-anchor="middle" class="note">with audit status</text>
+  <text x="32" y="824" class="note">Up to 3 search rounds · 1 writing correction · No return from auditing to search</text>
+</svg>

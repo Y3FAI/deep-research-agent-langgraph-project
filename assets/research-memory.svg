@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410" viewBox="0 0 760 410" role="img" aria-labelledby="title desc">
+  <title id="title">Shared research memory, not another workflow</title>
+  <desc id="desc">The agent keeps original source passages and evolving research notes. Notes include findings with source references, possible explanations, open questions, and connections. The controller reads both and updates the notes. The writer and auditor also read both. This diagram shows shared data, not node execution order or an additional reasoning loop.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#60768c" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family:Arial,sans-serif;fill:#243142;font-size:17px }
+      .title { font-size:23px;font-weight:600 }
+      .label { font-size:19px;font-weight:600 }
+      .note { font-size:16px;fill:#475569 }
+      .data { fill:#f6f9fc;stroke:#b5c7d8;stroke-width:1.5 }
+      .reader { fill:#fff;stroke:#9cabb9;stroke-width:1.5 }
+      .read { fill:none;stroke:#60768c;stroke-width:1.7;stroke-dasharray:5 4 }
+    </style>
+  </defs>
+  <rect width="760" height="410" fill="#fff"/>
+  <text x="32" y="37" class="title">Shared research memory</text>
+  <rect x="32" y="70" width="315" height="149" rx="10" class="data"/>
+  <text x="54" y="101" class="label">Source passages</text>
+  <text x="54" y="130">Captured text</text>
+  <text x="54" y="157">Source URL + stable passage ID</text>
+  <text x="54" y="187" class="note">Preserved for the current run</text>
+  <rect x="413" y="70" width="315" height="149" rx="10" class="data"/>
+  <text x="435" y="101" class="label">Research notes</text>
+  <text x="435" y="130">Findings + source references</text>
+  <text x="435" y="157">Hypotheses + open questions</text>
+  <text x="435" y="187" class="note">Understanding + idea connections</text>
+  <text x="380" y="253" text-anchor="middle" class="note">All three nodes receive both</text>
+  <path d="M189 219V274M571 219V274M138 274H622" class="read"/>
+  <path d="M138 274V308" class="read" marker-end="url(#arrow)"/>
+  <path d="M380 274V308" class="read" marker-end="url(#arrow)"/>
+  <path d="M622 274V308" class="read" marker-end="url(#arrow)"/>
+  <rect x="32" y="310" width="212" height="64" rx="10" class="reader"/>
+  <text x="138" y="336" text-anchor="middle" class="label">controller</text>
+  <text x="138" y="359" text-anchor="middle" class="note">Reads + updates notes</text>
+  <rect x="274" y="310" width="212" height="64" rx="10" class="reader"/>
+  <text x="380" y="336" text-anchor="middle" class="label">writer</text>
+  <text x="380" y="359" text-anchor="middle" class="note">Connects the findings</text>
+  <rect x="516" y="310" width="212" height="64" rx="10" class="reader"/>
+  <text x="622" y="336" text-anchor="middle" class="label">auditor</text>
+  <text x="622" y="359" text-anchor="middle" class="note">Checks against sources</text>
+  <text x="32" y="402" class="note">Shared data, not an extra stage. Notes are interpretations; source text remains available.</text>
+</svg>
